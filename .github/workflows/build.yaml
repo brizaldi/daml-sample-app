@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Check Java version
+        run: java -version
+
+      - name: Check JAVA_HOME
+        run: echo $JAVA_HOME
+
+      - name: Install DAML SDK
+        run: |
+          curl -sSL https://get.daml.com/ | sh -s 2.8.0
+      
+      - name: Check DAML version
+        run: daml version
