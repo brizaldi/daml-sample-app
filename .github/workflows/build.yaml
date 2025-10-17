@@ -12,6 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Install grpcurl
+        run: |
+          curl -L "https://github.com/fullstorydev/grpcurl/releases/download/v1.9.3/grpcurl_1.9.3_linux_x86_64.tar.gz" -o grpcurl.tar.gz
+          tar -xzf grpcurl.tar.gz -C /usr/local/bin grpcurl
+
+      - name: Check grpcurl version
+        run: grpcurl --version
+
       - name: Install JDK
         uses: actions/setup-java@v5
         with:
@@ -26,10 +34,9 @@ jobs:
 
       - name: Install DAML SDK
         run: |
-          curl -sSL https://get.daml.com/ | sh -s 2.8.0
-
+          curl -sSL https://get.daml.com/ | sh -s 2.8.
       - name: Add DAML to PATH
         run: echo "$HOME/.daml/bin" >> $GITHUB_PATH
-      
+
       - name: Check DAML version
         run: daml version
