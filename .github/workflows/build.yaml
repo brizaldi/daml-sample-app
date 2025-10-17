@@ -27,6 +27,9 @@ jobs:
       - name: Install DAML SDK
         run: |
           curl -sSL https://get.daml.com/ | sh -s 2.8.0
+
+      - name: Add DAML to PATH
+        run: echo "$HOME/.daml/bin" >> $GITHUB_PATH
       
       - name: Check DAML version
         run: daml version
