@@ -51,3 +51,6 @@ jobs:
 
       - name: Check jq version
         run: jq --version
+
+      - name: Check yq version
+        run: yq --version
